@@ -1,0 +1,7 @@
+$partial("templates/page-navigation.html")$
+$for(pageposts)$<div class='pagepost'>
+  <h1><a href='$url$'>$title$</a></h1>
+
+  $body$
+</div>$endfor$
+$partial("templates/page-navigation.html")$

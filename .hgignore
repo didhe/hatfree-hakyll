@@ -1,0 +1,7 @@
+syntax: glob
+
+_cache
+_site
+site
+site.hi
+site.o

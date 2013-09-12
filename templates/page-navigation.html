@@ -1,0 +1,9 @@
+$if(thispage)$<ul class='horiz'>$if(prevpage)$
+  <li><a href='page$prevpage$.html'>Prev &laquo;</a></li>$for(headpages)$
+  <li><a href='page$body$.html'>$body$</a></li>$endfor$
+  <li><a href='page$prevpage$.html'>$prevpage$</a></li>$endif$
+  <li class='thispage'>$thispage$</li>$if(nextpage)$
+  <li><a href='page$nextpage$.html'>$nextpage$</a></li>$for(tailpages)$
+  <li><a href='page$body$.html'>$body$</a></li>$endfor$
+  <li><a href='page$nextpage$.html'>&raquo; Next</a></li>$endif$
+</ul>$endif$
