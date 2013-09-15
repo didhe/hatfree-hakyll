@@ -55,9 +55,22 @@ div.info {
   font-style: italic;
 }
 
-.horiz {
-  list-style: none;
+.postfoot {
+  color: #555;
+  font-size: 14px;
+  font-style: italic;
+  text-align: right;
 }
+.postfoot li {
+  display: inline;
+}
+.postfoot li:before {
+  content: " ⁓ ";
+}
+.postfoot li:first-child:before {
+  content: "";
+}
+
 .horiz li {
   display: inline;
 }

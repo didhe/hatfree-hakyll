@@ -84,6 +84,7 @@ main = hakyll $ do -- {
               next page <?>
               listField "pageposts" postContext snaps <>
               constField "title" title <>
+              constField "suppresstitle" "true" <>
               worldContext -- }}}
         makeItem "" -- {
           >>= loadAndApplyTemplate "templates/pages.html" pagesContext

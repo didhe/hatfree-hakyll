@@ -1,7 +1,15 @@
-$partial("templates/page-navigation.html")$
+$if(thispage)$<div class='pagepost'>
+  <h3>$title$</h3>
+  $partial("templates/page-navigation.html")$
+</div>$endif$
 $for(pageposts)$<div class='pagepost'>
-  <h1><a href='$url$'>$title$</a></h1>
+  <h1>$title$</h1>
 
   $body$
+
+  <ul class='postfoot'>
+    <li><a href='$url$#disqus_thread'>Comments</a></li>
+    <li><a href='$url$'>Permanent link</a></li>
+  </ul>
 </div>$endfor$
-$partial("templates/page-navigation.html")$
+$if(thispage)$$partial("templates/page-navigation.html")$$endif$
