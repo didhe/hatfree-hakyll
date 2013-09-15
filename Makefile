@@ -5,8 +5,8 @@ main: build
 site: site.hs
 	ghc --make site -Wall
 
-clean: site.hs
-	runghc site.hs clean
+clean: site
+	./site clean
 	rm site site.hi site.o
 
 build: site
@@ -15,7 +15,7 @@ build: site
 check: site
 	./site check
 
-preview: site
+preview: rebuild
 	./site preview
 
 rebuild: site
