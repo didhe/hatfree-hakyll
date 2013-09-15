@@ -1,3 +1,5 @@
+MAIN = `pwd | sed 's/-hakyll$$//'`
+
 main: build
 
 site: site.hs
@@ -36,11 +38,16 @@ post:
 		hg add -v $$file; \
 		vim +$$ $$file'
 
-deploy: site
+deploy: _site/.hg
+
+_site/.hg: site
 	./site clean
-	hg clone ../hatfree _site
+	hg clone $(MAIN) _site
 	(cd _site; hg up -r gh-pages)
 	./site build
 	(cd _site; hg ci -A && hg push)
+
+publish: deploy
+	(cd $(MAIN); hg push)
 
 .PHONY: build check clean preview rebuild server post
