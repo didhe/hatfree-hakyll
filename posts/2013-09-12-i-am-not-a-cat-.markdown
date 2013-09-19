@@ -1,6 +1,6 @@
 ---
 title: I am not a cat.
-author: Michael Zuo
+author: en
 ---
 
 I have a name. I've quite a good idea where I was born.
