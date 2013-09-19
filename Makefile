@@ -28,7 +28,7 @@ post:
 	zsh -c '\
 		prompt() { echo -n "$$1:\t" >&2; read $$1 }; \
 		for ea in title author; do prompt $$ea; done; \
-		id=`perl -E"for(lc pop){s/\W/ /g;y/ /-/s;say}" "$$title"`; \
+		id=`perl -E"for(lc pop){s/[^a-z]+/-/ig;s/^-*|-*$$//;say}" "$$title"`; \
 		file=posts/$$(date +%F)-$$id.markdown; \
 		(echo ---; \
 		echo title: $$title; \
