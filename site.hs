@@ -2,6 +2,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 import Hakyll
 
+import Control.Applicative
 import Control.Monad
 import Data.List
 import Data.Monoid
@@ -25,6 +26,7 @@ main = hakyll $ do -- {
     route $ setExtension "html"
     compile $ withPandocOptions pandocCompilerWith -- {
       >>= loadAndApplyTemplate "templates/post.html"    postContext
+      >>= absolutizeAnchors
       >>= saveSnapshot "post"
       >>= loadAndApplyTemplate "templates/postpage.html" postContext
       >>= loadAndApplyTemplate "templates/default.html" postContext
@@ -48,7 +50,7 @@ main = hakyll $ do -- {
           getAllPosts = do -- {
             posts <- loadAllSnapshots "posts/*" "post"
             recentFirst posts -- }
-          getRecent = fmap (take itemsPerPage) getAllPosts
+          getRecent = take itemsPerPage <$> getAllPosts
           indexContext = -- {
             listField "allposts" postContext getAllPosts  <>
             listField "pageposts" postContext getRecent <>
@@ -95,6 +97,12 @@ main = hakyll $ do -- {
 
 
 --------------------------------------------------------------------------------
+absolutizeAnchors :: Item String -> Compiler (Item String)
+absolutizeAnchors item = aaWith <$> getRoute (itemIdentifier item)-- {
+  where aaWith Nothing = item -- {{{
+        aaWith (Just ru) = withUrls (aaEach ru) <$> item
+        aaEach r p@('#':_) = '/' : r ++ p -- assumes relativizeUrls
+        aaEach _ p = p -- }}}}
 
 maypend :: Monoid a => Maybe a -> a -> a
 maypend Nothing b = b
@@ -106,7 +114,7 @@ infixr 6 `maypend`, <?>
 
 paginate :: Int -> (Int -> Int -> [Identifier] -> Rules a) -> Rules ()
 paginate per go = do -- {{
-    posts <- fmap (reverse . sort) $ getMatches "posts/*"
+    posts <- reverse . sort <$> getMatches "posts/*"
     let -- {{
         poparts = parts posts
         maxPage = length poparts -- }}
