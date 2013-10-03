@@ -49,5 +49,6 @@ _site/.hg: site
 
 publish: deploy
 	(cd $(MAIN); hg push)
+	rm -rf _site/.hg
 
 .PHONY: build check clean preview rebuild server post
