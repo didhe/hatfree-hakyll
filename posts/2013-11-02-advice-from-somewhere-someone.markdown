@@ -26,8 +26,11 @@ Now, if a certain Stephen Crane of the nineteenth century happens to have
 written, and published in a collection (*War is Kind and, and Other Lines*)
 a brief poem, reproduced below:
 
-> A man said to the universe: \ "Sir I exist!" \ "However," replied the
-> universe, \ "The fact has not created in me \ "A sense of obligation."
+> A man said to the universe: \
+> "Sir, I exist!" \
+> "However," replied the universe, \
+> "The fact has not created in me \
+> "A sense of obligation."
 
 ---then, shall we say that this advice, or at least the sentiment, was
 provided to me Stephen Crane himself?
